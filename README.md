@@ -70,24 +70,10 @@ CSV de datos: listado de equipamientos de educación de la ciudad de Barcelona (
 
 ## 4. Arquitectura
 
-Esquema lógico (versión inicial; se actualizará con el diagrama definitivo en `docs/arquitectura/`):
+Esquema lógico de nuestro diagrama de arquitectura de red:
 
 ```
-                         Internet
-                             |
-                        [ Red NAT ]
-                             |
-                       +-----------+
-                       |  R-JFR    |  Router
-                       +-----------+
-                         |       |
-                 [ DMZ ]           [ Intranet ]
-                    |                  |
-              W-JFR (web)         B-JFR (MySQL)
-              SSH                 DHCP
-              F-NCC (FTP)         DNS
-                                  PC Windows
-                                  PC Linux
+![Primera versión de nuestro diagrama de red](./docs/arquitectura)
 ```
 
 Nota: la ubicación definitiva de cada servicio en DMZ o Intranet se confirma en el diagrama final del Sprint 1.
