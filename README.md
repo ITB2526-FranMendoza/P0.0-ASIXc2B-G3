@@ -72,7 +72,7 @@ CSV de datos: listado de equipamientos de educación de la ciudad de Barcelona (
 
 Esquema lógico de nuestro diagrama de arquitectura de red:
 
-![Primera versión de nuestro diagrama de red](docs/arquitectura/Diagrama Arquitectura G3.png)
+![Diagrama de arquitectura](docs/arquitectura/Diagrama%20Arquitectura%20G3.png)
 
 Nota: la ubicación definitiva de cada servicio en DMZ o Intranet se confirma en el diagrama final del Sprint 1.
 
