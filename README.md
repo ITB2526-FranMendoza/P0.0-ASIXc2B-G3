@@ -72,7 +72,7 @@ CSV de datos: listado de equipamientos de educación de la ciudad de Barcelona (
 
 Esquema lógico de nuestro diagrama de arquitectura de red:
 
-![Diagrama de arquitectura](docs/arquitectura/Diagrama%20Arquitectura%20G3.png)
+![Diagrama de arquitectura](docs/arquitectura/Diagrama de Red Grupo3.png)
 
 
 ## 5. Planificación por sprints
