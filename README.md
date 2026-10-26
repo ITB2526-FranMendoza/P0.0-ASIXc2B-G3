@@ -44,7 +44,7 @@ En los nombres de equipo, NCC indica el número de equipo (N01, N02, ...)
 
 ### 3.1 Hardware de red
 
-Router con hostname R-JFR y 3 redes:
+Router con hostname R-G3 y 3 redes:
 
 - DMZ
 - Intranet
@@ -54,12 +54,12 @@ Router con hostname R-JFR y 3 redes:
 
 | Servicio | Hostname | Detalles |
 |---|---|---|
-| Servidor web | W-JFR | Servidor web de la aplicación |
+| Servidor web | W-G3 | Servidor web de la aplicación |
 | SSH | - | Acceso remoto a los equipos |
-| Base de datos | B-JFR | MySQL, usuario bchecker, carga del CSV de equipamientos de educación de Barcelona |
+| Base de datos | B-G3 | MySQL, usuario bchecker, carga del CSV de equipamientos de educación de Barcelona |
 | DHCP | - | Reparto de direcciones en las redes del router |
-| DNS | - | Debe resolver R-NCC y R para el router |
-| FTP | F-NCC | Servidor FTP |
+| DNS | - | Debe resolver R-G3 y R para el router |
+| FTP | F-G3 | Servidor FTP |
 
 CSV de datos: listado de equipamientos de educación de la ciudad de Barcelona (Open Data BCN), que se carga en la base de datos creada.
 
