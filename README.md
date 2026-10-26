@@ -91,9 +91,9 @@ Cada persona dedica 10 horas por sprint.
 
 | Tarea | Descripción | Inicio | Fin | Horas |
 |---|---|---|---|---|
-| Crear proyecto y backlog en Proofhub | Crear el proyecto P0.0-ASIXc2gC-Gnn y cargar el backlog con las tareas de los 3 sprints | 07/10 | 09/10 | 1 |
+| Crear proyecto y backlog en Proofhub | Crear el proyecto P0.0-ASIXc2gC-G3 y cargar el backlog con las tareas de los 3 sprints | 07/10 | 09/10 | 1 |
 | Diagrama de la arquitectura | Definir el diagrama de la arquitectura que se desplegará (router, redes DMZ/Intranet/NAT, servidores y clientes) | 07/10 | 14/10 | 3 |
-| Router R-JFR con 3 redes | Desplegar el router R-JFR con las redes DMZ, Intranet y NAT | 09/10 | 21/10 | 4 |
+| Router R-G3 con 3 redes | Desplegar el router R-G3 con las redes DMZ, Intranet y NAT | 09/10 | 21/10 | 4 |
 | Servidor DHCP (instalación) | Instalar y configurar el servicio DHCP para las redes del router | 14/10 | 21/10 | 2 |
 
 #### Persona 2 - Jesús Palma Palma
@@ -101,8 +101,8 @@ Cada persona dedica 10 horas por sprint.
 | Tarea | Descripción | Inicio | Fin | Horas |
 |---|---|---|---|---|
 | Cargar mis tareas en Proofhub | Revisar el backlog y asignarse las tareas propias | 07/10 | 09/10 | 1 |
-| Servidor web W-JFR | Desplegar el servidor web W-JFR y crear el usuario bchecker | 09/10 | 21/10 | 5 |
-| Preparar servidor BBDD B-JFR e instalar MySQL | Desplegar el equipo B-JFR e instalar MySQL | 14/10 | 21/10 | 4 |
+| Servidor web W-G3 | Desplegar el servidor web W-G3 y crear el usuario bchecker | 09/10 | 21/10 | 5 |
+| Preparar servidor BBDD B-G3 e instalar MySQL | Desplegar el equipo B-G3 e instalar MySQL | 14/10 | 21/10 | 4 |
 
 #### Persona 3 - Fran Mendoza Jiménez
 
@@ -135,11 +135,11 @@ Cada persona dedica 10 horas por sprint.
 
 | Tarea | Descripción | Inicio | Fin | Horas |
 |---|---|---|---|---|
-| Configurar B-JFR y usuario bchecker | Configurar MySQL en B-JFR con el usuario bchecker | 21/10 | 28/10 | 2 |
+| Configurar B-G3 y usuario bchecker | Configurar MySQL en B-JFR con el usuario bchecker | 21/10 | 28/10 | 2 |
 | Descargar y analizar el CSV de equipamientos de educación | Descargar el CSV de equipamientos de educación de Barcelona (Open Data BCN) y revisar sus columnas | 21/10 | 28/10 | 2 |
 | Cargar el CSV en la BBDD | Crear las tablas y cargar los datos del CSV en la base de datos de B-JFR | 28/10 | 04/11 | 3 |
-| Configurar W-JFR y usuario bchecker | Terminar la configuración del servidor web y comprobar el acceso con bchecker | 28/10 | 04/11 | 2 |
-| Prueba de conexión web - BBDD | Verificar que W-JFR puede conectarse a B-JFR | 04/11 | 04/11 | 1 |
+| Configurar W-G3 y usuario bchecker | Terminar la configuración del servidor web y comprobar el acceso con bchecker | 28/10 | 04/11 | 2 |
+| Prueba de conexión web - BBDD | Verificar que W-G3 puede conectarse a B-G3 | 04/11 | 04/11 | 1 |
 
 #### Persona 3 - Fran Mendoza Jiménez
 
@@ -183,13 +183,13 @@ Cada persona dedica 10 horas por sprint.
 |---|---|---|---|---|
 | Documentación final en Markdown | Completar el árbol de documentación con el trabajo de las 4 personas | 04/11 | 15/11 | 3 |
 | Documentar pruebas y subida a producción | Recoger las pruebas realizadas y el proceso de subida a producción | 11/11 | 15/11 | 1 |
+| [MEJORA] Script de despliegue automatizado | Crear un script que automatice el despliegue de la infraestructura | 11/11 | 18/11 | 3 |
 
 #### Persona 4 - Joel Muñoz Llerin
 
 | Tarea | Descripción | Inicio | Fin | Horas |
 |---|---|---|---|---|
 | [MEJORA] SSH con port knocking y fail2ban | Configurar port knocking y fail2ban en el servidor SSH | 11/11 | 18/11 | 3 |
-| [MEJORA] Script de despliegue automatizado | Crear un script que automatice el despliegue de la infraestructura | 11/11 | 18/11 | 3 |
 | [MEJORA] Honeypot en la DMZ | Implementar un honeypot en la DMZ (opcional entre Rubén y Joel) | 11/11 | 18/11 | 3 |
 
 ## 6. Mejoras (al final del proyecto)
@@ -203,7 +203,7 @@ Las mejoras se empiezan solo cuando la práctica base está terminada y probada.
 | Conexión con DNS y dominio públicos | Rubén Mateos Amores |
 | Implementar un honeypot en la DMZ | Rubén Mateos Amores o Joel Muñoz Llerin (opcional) |
 | Certificados y dominio público para FTP y servidor web | Rubén Mateos Amores (con Jesús y Fran) |
-| Script de despliegue automatizado | Joel Muñoz Llerin |
+| Script de despliegue automatizado | Fran Mendoza Jimenez |
 | SSH con port knocking y fail2ban | Joel Muñoz Llerin |
 
 Prioridad si falta tiempo: API REST, SSH con port knocking y fail2ban, y segmentar la BBDD.
@@ -214,11 +214,11 @@ Desplegar una pequeña aplicación (se puede generar con apoyo de IA) que muestr
 
 Lista de comprobación final:
 
-- [ ] El router R-JFR enruta entre DMZ, Intranet y NAT.
+- [ ] El router R-G3 enruta entre DMZ, Intranet y NAT.
 - [ ] Los clientes reciben dirección por DHCP.
-- [ ] El DNS resuelve R-NCC y R para el router.
+- [ ] El DNS resuelve R-G3 y R para el router.
 - [ ] El usuario bchecker accede a todos los equipos y aplicaciones.
-- [ ] W-JFR se conecta a B-JFR.
+- [ ] W-G3 se conecta a B-G3.
 - [ ] El CSV está cargado en MySQL.
 - [ ] La aplicación de prueba muestra el contenido de las tablas.
 - [ ] El acceso por SSH y la subida por FTP funcionan.
@@ -231,7 +231,7 @@ Lista de comprobación final:
 Generar el par de claves en el servidor:
 
 ```bash
-ssh-keygen -t ed25519 -C "servidor-jfr03"
+ssh-keygen -t ed25519 -C "W-G3"
 ```
 
 Mostrar la clave pública para copiarla:
