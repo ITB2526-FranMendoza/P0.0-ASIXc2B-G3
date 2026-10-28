@@ -8,8 +8,6 @@
 
 La VM se crea en **IsardVDI** con la tarjeta de red **ITB3** incluida en la configuración, para poder probar la conexión con los demás servidores.
 
-![Máquinas en Isard](img/isard-clientes.png)
-
 ## Índice
 
 1. [Hostname](#1-hostname)
@@ -29,7 +27,7 @@ Se edita el archivo `/etc/hostname`:
 sudo nano /etc/hostname      # contenido: PC-LIN-G3
 ```
 
-![Hostname Linux](img/hostname-linux.png)
+![Hostname Linux]
 
 ## 2. Configuración de IP
 
@@ -39,7 +37,7 @@ La interfaz `enp2s0` tiene la IP `192.168.3.21/24`. Se comprueba con:
 ip a
 ```
 
-![IP Linux](img/ip-linux.png)
+![IP Linux]
 
 ## 3. Usuario bchecker
 
@@ -50,7 +48,7 @@ sudo useradd bchecker
 sudo passwd bchecker
 ```
 
-![bchecker Linux](img/bchecker-linux.png)
+![bchecker Linux]
 
 ## 4. Pruebas de conectividad
 
@@ -68,7 +66,7 @@ sudo passwd bchecker
 ping 192.168.3.30
 ```
 
-![Ping router](img/linux-ping-router.png)
+![Ping router]
 
 ### SSH
 
@@ -79,7 +77,7 @@ ssh 192.168.3.40
 
 La primera conexión pide aceptar la huella del servidor (`yes`).
 
-![SSH Linux](img/linux-ssh.png)
+![SSH Linux]
 
 ### FTP
 
@@ -90,7 +88,7 @@ ftp 192.168.3.41      # usuario: bchecker
 
 El servidor responde `220 (vsFTPd 3.0.5)` y `230 Login successful`.
 
-![FTP Linux](img/linux-ftp.png)
+![FTP Linux]
 
 ### Web
 
@@ -98,7 +96,7 @@ El servidor responde `220 (vsFTPd 3.0.5)` y `230 Login successful`.
 ping 192.168.3.12
 ```
 
-![Ping web](img/linux-ping-web.png)
+![Ping web]
 
 ### Base de datos
 
@@ -106,7 +104,7 @@ ping 192.168.3.12
 ping 192.168.3.11
 ```
 
-![Ping BBDD](img/linux-ping-bbdd.png)
+![Ping BBDD]
 
 ## 5. Validación por clave pública/privada con GitHub
 
@@ -123,7 +121,7 @@ Se crean:
 - `~/.ssh/id_ed25519` → clave privada (**no compartir**)
 - `~/.ssh/id_ed25519.pub` → clave pública
 
-![ssh-keygen](img/ssh-keygen.png)
+![ssh-keygen]
 
 ### Copiar la clave pública
 
@@ -131,13 +129,13 @@ Se crean:
 cat ~/.ssh/id_ed25519.pub
 ```
 
-![Clave pública](img/clave-publica.png)
+![Clave pública]
 
 ### Añadirla en GitHub
 
 *Perfil → Settings → SSH and GPG keys → New SSH key*. Alternativa: en el repo, *Settings → Deploy keys → Add deploy key*, marcando *Allow write access* si va a hacer push.
 
-![Clave en GitHub](img/github-ssh-keys.png)
+![Clave en GitHub]
 
 ### Probar la validación
 
@@ -151,7 +149,7 @@ La primera vez pide confirmar la huella de `github.com` (`yes`). La respuesta co
 Hi <usuario>! You've successfully authenticated, but GitHub does not provide shell access.
 ```
 
-![ssh -T](img/ssh-T.png)
+![ssh -T]
 
 ## 6. Flujo Git
 
@@ -162,7 +160,7 @@ git clone git@github.com:ITB2526-FranMendoza/P0.0-ASIXc2B-G3.git
 cd P0.0-ASIXc2B-G3
 ```
 
-![git clone](img/git-clone.png)
+![git clone]
 
 ### Identificarse (solo la primera vez)
 
@@ -173,7 +171,7 @@ git config --global user.name "ITB2526-FranMendoza"
 git config --global user.email "<tu_correo>"
 ```
 
-![git config](img/git-config.png)
+![git config]
 
 ### Crear, confirmar y subir cambios
 
@@ -192,11 +190,11 @@ git push
 | `git push` | Sube los commits a GitHub |
 | `git pull` | Baja los cambios de GitHub |
 
-![git commit y push](img/git-push.png)
+![git commit y push]
 
 El archivo `test.md` aparece en GitHub con el mensaje del commit.
 
-![test.md en GitHub](img/github-test-md.png)
+![test.md en GitHub]
 
 ### Comprobación nube → local
 
@@ -206,7 +204,7 @@ git pull
 
 Responde `Ja està al dia.` (ya está actualizado).
 
-![git pull](img/git-pull.png)
+![git pull]
 
 ### Subida a producción
 
