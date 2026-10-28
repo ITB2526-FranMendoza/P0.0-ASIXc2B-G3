@@ -166,7 +166,7 @@ Cada persona dedica 10 horas por sprint.
 | Revisión final de conectividad | Revisar la conectividad entre redes y servicios antes de las pruebas finales | 04/11 | 11/11 | 2 |
 | [MEJORA] Honeypot en la DMZ | Implementar un honeypot en la DMZ (opcional entre Rubén y Joel) | 11/11 | 18/11 | 3 |
 | [MEJORA] Conexión con DNS y dominio públicos | Conectar el DNS con un dominio público | 11/11 | 18/11 | 2 |
-| [MEJORA] Certificados y dominio público para FTP y web | Certificados y dominio público para F-NCC y el servidor web (coordinar con las personas 2 y 3) | 11/11 | 18/11 | 3 |
+| [MEJORA] Certificados y dominio público para FTP y web | Certificados y dominio público para F-G3 y el servidor web (coordinar con las personas 2 y 4) | 11/11 | 18/11 | 3 |
 
 #### Persona 2 - Jesús Palma Palma
 
