@@ -295,7 +295,7 @@ git pull origin main
 
 ## 9. Árbol de documentación
 
-Estructura propuesta para el repositorio:
+Estructura para el repositorio:
 
 ```
 .
