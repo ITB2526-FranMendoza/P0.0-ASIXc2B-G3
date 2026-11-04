@@ -34,14 +34,13 @@ La interfaz `enp2s0` tiene la IP `192.168.3.21/24`. Se comprueba con:
 ip a
 ```
 
+<img width="782" height="119" alt="image" src="https://github.com/user-attachments/assets/726458bf-3d84-41e8-a03e-dcabdd52b816" />
+
 ## 3. Usuario bchecker
 
 Usuario `bchecker` con contraseña `bchecker121`:
 
-```bash
-sudo useradd bchecker
-sudo passwd bchecker
-```
+<img width="471" height="104" alt="image" src="https://github.com/user-attachments/assets/26218201-41c2-41df-b11c-e72ce6feaa67" />
 
 ## 4. Pruebas de conectividad
 
@@ -55,39 +54,31 @@ sudo passwd bchecker
 
 ### Router / DNS / DHCP
 
-```bash
-ping 192.168.3.30
-```
+<img width="456" height="183" alt="image" src="https://github.com/user-attachments/assets/db3a50d3-d63b-4a55-a2b0-72fe3926e2ec" />
 
 ### SSH
 
-```bash
-ping 192.168.3.40
-ssh 192.168.3.40
-```
+<img width="457" height="179" alt="image" src="https://github.com/user-attachments/assets/b547df7c-e28b-4e41-9d68-2b37898cca26" />
 
 La primera conexión pide aceptar la huella del servidor (`yes`).
 
+<img width="553" height="325" alt="image" src="https://github.com/user-attachments/assets/20f619b7-9cf1-4e7f-ab2f-33969341fcaf" />
+
 ### FTP
 
-```bash
-ping 192.168.3.41
-ftp 192.168.3.41      # usuario: bchecker
-```
+<img width="557" height="177" alt="image" src="https://github.com/user-attachments/assets/c719b7d3-d65c-45c2-8361472ea47af188" />
 
 El servidor responde `220 (vsFTPd 3.0.5)` y `230 Login successful`.
 
+<img width="535" height="322" alt="image" src="https://github.com/user-attachments/assets/142d752c-d33a-4a7e-a1b2-4071a7a84898" />
+
 ### Web
 
-```bash
-ping 192.168.3.12
-```
+<img width="549" height="158" alt="image" src="https://github.com/user-attachments/assets/cc896a03-d3aa-411a-9adf-261442b59e4d" />
 
 ### Base de datos
 
-```bash
-ping 192.168.3.11
-```
+<img width="558" height="187" alt="image" src="https://github.com/user-attachments/assets/273b2f57-8e2d-4c42-a41c-64c80c6ecc12" />
 
 ## 5. Validación por clave pública/privada con GitHub
 
