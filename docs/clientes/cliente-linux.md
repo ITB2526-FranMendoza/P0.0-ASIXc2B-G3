@@ -23,9 +23,8 @@ La VM se crea en **IsardVDI** con la tarjeta de red **ITB3** incluida en la conf
 
 Se edita el archivo `/etc/hostname`:
 
-```bash
-sudo nano /etc/hostname      # contenido: PC-LIN-G3
-```
+<img width="658" height="66" alt="image" src="https://github.com/user-attachments/assets/bea42dfd-e112-4a0f-8da3-4ea5702a8339" />
+
 
 ## 2. Configuración de IP
 
@@ -48,11 +47,11 @@ sudo passwd bchecker
 
 | Destino | IP | Responsable | Ping | Servicio |
 |---|---|---|---|---|
-| R-G3 (router/gateway) | 192.168.3.30 | Rubén | OK | n/a |
+| R-G3 (router/gateway) | 192.168.3.30 | Rubén | OK | DHCP/DNS OK |
 | SSH-G3 | 192.168.3.40 | Joel | OK | SSH OK |
 | F-G3 (FTP) | 192.168.3.41 | Joel | OK | FTP OK (`bchecker`) |
-| W-G3 (web) | 192.168.3.12 | Jesús | OK | Pendiente (HTTP) |
-| B-G3 (BBDD) | 192.168.3.11 | Jesús | OK | Pendiente (MySQL) |
+| W-G3 (web) | 192.168.3.12 | Jesús | OK | HTTP OK |
+| B-G3 (BBDD) | 192.168.3.11 | Jesús | OK | MySQL |
 
 ### Router / DNS / DHCP
 
