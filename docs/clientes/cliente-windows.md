@@ -21,9 +21,7 @@ La VM se crea en **IsardVDI** con la tarjeta de red **ITB3** incluida en la conf
 
 *Propiedades del sistema → Cambiar nombre del equipo* → `PC-WIN-G3`, grupo de trabajo `WORKGROUP`. Se comprueba con:
 
-```cmd
-hostname
-```
+<img width="290" height="63" alt="image" src="https://github.com/user-attachments/assets/fc0bb254-174d-4f30-bcb1-a9f1ab966a47" />
 
 ## 2. Configuración de IP
 
@@ -33,8 +31,8 @@ hostname
 |---|---|
 | Dirección IP | 192.168.3.22 |
 | Máscara de subred | 255.255.255.0 |
-| Puerta de enlace | *(pendiente: 192.168.3.30)* |
-| DNS | *(pendiente)* |
+| Puerta de enlace | 192.168.3.30 |
+| DNS | 192.168.3.30 |
 
 Se comprueba con:
 
@@ -46,9 +44,7 @@ ipconfig /all
 
 Usuario `bchecker` con contraseña `bchecker121`, desde un CMD como administrador:
 
-```cmd
-net user bchecker * /add
-```
+<img width="523" height="97" alt="image" src="https://github.com/user-attachments/assets/54373231-0e12-4e4c-a172-dec5bae93e26" />
 
 ## 4. Pruebas de conectividad
 
@@ -62,38 +58,30 @@ net user bchecker * /add
 
 ### Router / DNS / DHCP
 
-```cmd
-ping 192.168.3.30
-```
+<img width="503" height="218" alt="image" src="https://github.com/user-attachments/assets/994cf3f4-4568-41d0-ab8f-76e5746063f7" />
 
 ### SSH
 
-```cmd
-ping 192.168.3.40
-ssh 192.168.3.40
-```
+<img width="510" height="219" alt="image" src="https://github.com/user-attachments/assets/3e3a4d60-2b6e-4a1d-9954-b32e6efff05f" />
 
 La primera conexión pide aceptar la huella del servidor (`yes`).
 
+<img width="619" height="227" alt="image" src="https://github.com/user-attachments/assets/81f4d965-72a3-443d-98f3-ddde225ff2a1" />
+
 ### FTP
 
-```cmd
-ping 192.168.3.41
-ftp 192.168.3.41
-```
+<img width="603" height="287" alt="image" src="https://github.com/user-attachments/assets/5dfcb4b1-e169-4897-84f7-2110ace2f592" />
 
 Usuario `bchecker`. El servidor responde `220 (vsFTPd 3.0.5)` y `230 Login successful`.
 
+<img width="560" height="259" alt="image" src="https://github.com/user-attachments/assets/69921fe8-a8fb-49de-af82-c20aae9ef690" />
+
 ### Web
 
-```cmd
-ping 192.168.3.12
-```
+<img width="598" height="260" alt="image" src="https://github.com/user-attachments/assets/c6ef23ac-dc5c-4879-8d90-7cf303b445ac" />
 
 ### Base de datos
 
 ```cmd
 ping 192.168.3.11
 ```
-
-No hay respuesta desde Windows (en Linux sí). Pendiente de revisar: firewall de B-G3, firewall de Windows o regla del router.
