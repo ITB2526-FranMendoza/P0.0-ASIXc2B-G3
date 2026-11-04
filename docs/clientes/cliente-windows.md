@@ -22,6 +22,8 @@ La VM se crea en **IsardVDI** con la tarjeta de red **ITB3** incluida en la conf
 *Propiedades del sistema → Cambiar nombre del equipo* → `PC-WIN-G3`, grupo de trabajo `WORKGROUP`. Se comprueba con:
 
 <img width="290" height="63" alt="image" src="https://github.com/user-attachments/assets/fc0bb254-174d-4f30-bcb1-a9f1ab966a47" />
+<img width="348" height="484" alt="image" src="https://github.com/user-attachments/assets/d166868a-cd92-43b9-90d5-6df8fa24e4fa" />
+
 
 ## 2. Configuración de IP
 
