@@ -162,6 +162,3 @@ git pull
 
 Responde `Ja està al dia.` (ya está actualizado).
 
-### Subida a producción
-
-> **Pendiente:** se documentará cuando W-G3 tenga su propia clave SSH. Flujo previsto: `git push` desde el cliente y `git pull` en **W-G3**.
