@@ -66,7 +66,7 @@ La primera conexión pide aceptar la huella del servidor (`yes`).
 
 ### FTP
 
-<img width="557" height="177" alt="image" src="https://github.com/user-attachments/assets/c719b7d3-d65c-45c2-8361472ea47af188" />
+<img width="554" height="181" alt="image" src="https://github.com/user-attachments/assets/38f35691-f045-4154-874c-ebb81006c509" />
 
 El servidor responde `220 (vsFTPd 3.0.5)` y `230 Login successful`.
 
