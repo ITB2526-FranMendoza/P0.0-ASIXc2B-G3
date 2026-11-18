@@ -76,9 +76,17 @@ El servidor responde `220 (vsFTPd 3.0.5)` y `230 Login successful`.
 
 <img width="549" height="158" alt="image" src="https://github.com/user-attachments/assets/cc896a03-d3aa-411a-9adf-261442b59e4d" />
 
+Conexión a la página web
+
+<img width="682" height="500" alt="image" src="https://github.com/user-attachments/assets/362374bc-52ea-445c-a4ee-4a5964754b1b" />
+
 ### Base de datos
 
 <img width="558" height="187" alt="image" src="https://github.com/user-attachments/assets/273b2f57-8e2d-4c42-a41c-64c80c6ecc12" />
+
+Conexión a la base de datos
+
+<img width="535" height="435" alt="image" src="https://github.com/user-attachments/assets/0c07a7e1-7b9d-463e-8ebb-343ff4c36560" />
 
 ## 5. Validación por clave pública/privada con GitHub
 
