@@ -9,16 +9,17 @@
 
 1. [Objetivo del sprint](#1-objetivo-del-sprint)
 2. [Diagrama y organización de la red](#2-diagrama-y-organización-de-la-red)
-3. [Configuración de red del router R-G3](#3-configuración-de-red-del-router-r-g3)
-4. [Creación del usuario bchecker](#4-creación-del-usuario-bchecker)
-5. [Instalación y activación de SSH](#5-instalación-y-activación-de-ssh)
-6. [Activación del reenvío de paquetes](#6-activación-del-reenvío-de-paquetes)
-7. [Comprobación de las rutas del router](#7-comprobación-de-las-rutas-del-router)
-8. [Configuración de NAT con nftables](#8-configuración-de-nat-con-nftables)
-9. [Pruebas desde el cliente Linux](#9-pruebas-desde-el-cliente-linux)
-10. [Comprobación del tráfico con tcpdump](#10-comprobación-del-tráfico-con-tcpdump)
-11. [Ejemplo de Netplan para un cliente](#11-ejemplo-de-netplan-para-un-cliente)
-12. [Resultados y observaciones](#12-resultados-y-observaciones)
+3. [Plan de direccionamiento y redes utilizadas](#3-plan-de-direccionamiento-y-redes-utilizadas)
+13. [Configuración de red del router R-G3](#3-configuración-de-red-del-router-r-g3)
+13. [Creación del usuario bchecker](#4-creación-del-usuario-bchecker)
+13. [Instalación y activación de SSH](#5-instalación-y-activación-de-ssh)
+13. [Activación del reenvío de paquetes](#6-activación-del-reenvío-de-paquetes)
+13. [Comprobación de las rutas del router](#7-comprobación-de-las-rutas-del-router)
+13. [Configuración de NAT con nftables](#8-configuración-de-nat-con-nftables)
+13. [Pruebas desde el cliente Linux](#9-pruebas-desde-el-cliente-linux)
+13. [Comprobación del tráfico con tcpdump](#10-comprobación-del-tráfico-con-tcpdump)
+13. [Ejemplo de Netplan para un cliente](#11-ejemplo-de-netplan-para-un-cliente)
+13. [Resultados y observaciones](#12-resultados-y-observaciones)
 
 ---
 
@@ -51,7 +52,62 @@ La puerta de enlace prevista para las máquinas es **192.168.3.30**, la IP de R-
 
 > **Nota sobre el diseño:** el diagrama distingue DMZ e intranet de forma lógica, pero las direcciones que aparecen pertenecen todas a `192.168.3.0/24`. Estas capturas no demuestran por sí solas que ambas zonas estén separadas en subredes diferentes. La separación real tendría que comprobarse en la configuración de las interfaces y las redes virtuales.
 
-## 3. Configuración de red del router R-G3
+## 3. Plan de direccionamiento y redes utilizadas
+
+### 3.1. Entorno de virtualización y criterio de reparto
+
+Todas las máquinas del proyecto están desplegadas como **máquinas virtuales en IsardVDI**. Durante el montaje añadimos la red virtual **ITB3** a las máquinas para que pudieran comunicarse entre sí. En esa red utilizamos el bloque `192.168.3.0/24`, cuya máscara es `255.255.255.0`.
+
+Decidimos reservar un intervalo de diez direcciones por compañero. **No son subredes distintas**: son rangos de organización dentro de una misma subred `/24`. Esto nos ayuda a identificar quién se encarga de cada máquina y a evitar que dos equipos utilicen la misma IP.
+
+![Reparto de direcciones IP entre los integrantes del grupo](imagenes/reparto-direcciones-grupo.png)
+
+*Figura adicional. Reparto de direcciones IP acordado por el grupo G3.*
+
+| Responsable | Rango reservado | Equipos y direcciones utilizadas |
+| --- | --- | --- |
+| Jesús | `192.168.3.10`–`192.168.3.19` | B-G3: `192.168.3.11`; W-G3: `192.168.3.12` |
+| Fran | `192.168.3.20`–`192.168.3.29` | PC-LIN-G3: `192.168.3.21`; PC-WIN-G3: `192.168.3.22` |
+| Rubén | `192.168.3.30`–`192.168.3.39` | R-G3: `192.168.3.30`; DNS-DHCP-G3: `192.168.3.31` |
+| Joel | `192.168.3.40`–`192.168.3.49` | SSH-G3: `192.168.3.40`; F-G3: `192.168.3.41` |
+
+La dirección `192.168.3.30` se ha elegido como puerta de enlace para los equipos que deben salir a través de R-G3. Así mantenemos una referencia común para la configuración de las rutas de los clientes.
+
+### 3.2. Interfaces y redes que tiene realmente R-G3
+
+Para comprobar las direcciones actuales del router ejecuté:
+
+```bash
+ip -br a
+```
+
+![Interfaces actuales del router R-G3](imagenes/interfaces-actuales-r-g3.png)
+
+*Figura adicional. Estado de las interfaces de R-G3 y direcciones IPv4 mostradas por `ip -br a`.*
+
+| Interfaz | IP observada | Red a la que pertenece | Uso en el proyecto |
+| --- | --- | --- | --- |
+| `enp1s0` | `192.168.121.143/22` | `192.168.120.0/22` | Conexión exterior; se utiliza como salida NAT |
+| `enp2s0` | `192.168.3.30/24` | `192.168.3.0/24` | Comunicación con las máquinas de ITB3 |
+| `enp3s0` | `10.2.134.108/16` | `10.2.0.0/16` | Red adicional de IsardVDI; no se ha documentado como DMZ o intranet |
+
+Las tres interfaces aparecen en estado `UP`. La IP de `enp1s0` se obtiene por DHCP y puede cambiar; por eso la captura reciente muestra `192.168.121.143`, mientras que en una captura anterior aparecía otra dirección.
+
+### 3.3. Diferencia entre las tres redes conectadas y las zonas del enunciado
+
+El enunciado pide **DMZ, intranet y NAT**. En nuestro diagrama hemos situado los servicios según su función:
+
+- **DMZ (diseño):** W-G3, SSH-G3 y F-G3, que son servicios pensados para recibir conexiones.
+- **Intranet (diseño):** B-G3, DNS-DHCP-G3 y los dos clientes, que representan los servicios internos.
+- **Salida NAT (implementada):** R-G3 utiliza `enp1s0` para sacar el tráfico de los clientes hacia la red exterior.
+
+**Limitación del despliegue:** aunque R-G3 tiene tres interfaces y aparecen tres redes IP conectadas, **DMZ e intranet no están separadas en dos subredes independientes**. Las máquinas de ambas zonas comparten ITB3 y la red `192.168.3.0/24`. La interfaz `enp3s0` pertenece a otra red de IsardVDI, pero no hay evidencias de que se haya configurado como una de esas dos zonas.
+
+Por tanto, el direccionamiento que sí podemos justificar es el de **ITB3 y las interfaces actuales del router**. No sería correcto presentar el reparto por compañeros como una separación de DMZ e intranet. Para conseguir esa separación harían falta cambios en las redes virtuales y en el direccionamiento, que no forman parte del montaje que estamos documentando aquí.
+
+---
+
+## 4. Configuración de red del router R-G3
 
 ### 3.1. Evitar que cloud-init sobrescriba la configuración
 
@@ -101,7 +157,7 @@ ping 192.168.3.22
 
 Esta prueba confirma que el router puede comunicarse con ese cliente en la red del grupo. Todavía no es una prueba de salida a Internet; eso se comprueba más adelante.
 
-## 4. Creación del usuario bchecker
+## 5. Creación del usuario bchecker
 
 Uno de los requisitos de la práctica es disponer del usuario **bchecker** en los equipos. Lo creé en R-G3 y comprobé que pertenecía al grupo `sudo`, para poder ejecutar tareas de administración.
 
@@ -129,7 +185,7 @@ whoami
 
 > La contraseña que aparece en el enunciado se utiliza para esta práctica de clase. En un entorno real no sería recomendable publicar contraseñas ni reutilizar la misma en todos los equipos.
 
-## 5. Instalación y activación de SSH
+## 6. Instalación y activación de SSH
 
 Para poder administrar R-G3 desde otras máquinas, instalé el servidor OpenSSH:
 
@@ -153,7 +209,7 @@ sudo systemctl enable --now ssh
 
 Esto deja preparado el acceso remoto por SSH, aunque la captura de esta sección demuestra la instalación y activación del servicio, no una conexión remota concreta a R-G3.
 
-## 6. Activación del reenvío de paquetes
+## 7. Activación del reenvío de paquetes
 
 Para que R-G3 funcione como router, Linux debe poder **reenviar paquetes IPv4** entre sus interfaces. Si esta opción está desactivada, el equipo puede comunicarse por sí mismo, pero no actuar como puerta de paso para el tráfico de otros equipos.
 
@@ -170,7 +226,7 @@ sudo sysctl --system
 
 Al guardarlo en `/etc/sysctl.d/`, el ajuste se mantiene para los siguientes arranques de la máquina.
 
-## 7. Comprobación de las rutas del router
+## 8. Comprobación de las rutas del router
 
 Una vez preparado el reenvío de paquetes, revisé la tabla de rutas:
 
@@ -186,7 +242,20 @@ La captura muestra que la ruta por defecto utiliza el gateway `192.168.120.1` a 
 
 Esto es importante porque permite distinguir la interfaz que conecta con la red del grupo de la que se utiliza como salida hacia el exterior. En la tabla también aparece otra ruta conectada por `enp3s0`, pero no se documenta una configuración específica de esa interfaz en este sprint.
 
-## 8. Configuración de NAT con nftables
+### Comprobación actualizada de las rutas
+
+He repetido `ip route` y he guardado una captura reciente:
+
+![Rutas actuales del router R-G3](imagenes/rutas-actuales-r-g3.png)
+
+*Figura adicional. Tabla de rutas actualizada de R-G3.*
+
+La ruta por defecto es `default via 192.168.120.1 dev enp1s0`. También aparecen las rutas conectadas de `192.168.3.0/24` (`enp2s0`), `192.168.120.0/22` (`enp1s0`) y `10.2.0.0/16` (`enp3s0`). Además, DHCP ha añadido rutas específicas, entre ellas una hacia `8.8.8.8` por `enp1s0`.
+
+Esta captura demuestra **qué rutas conoce R-G3**; no demuestra por sí sola que la DMZ y la intranet estén aisladas.
+
+
+## 9. Configuración de NAT con nftables
 
 ### 8.1. Crear la regla de NAT
 
@@ -244,7 +313,22 @@ sudo nft list ruleset
 
 Con esto queda configurada la traducción de direcciones. La comprobación completa requiere probar la salida a Internet desde un cliente, como hago en el siguiente apartado.
 
-## 9. Pruebas desde el cliente Linux
+### Comprobación actualizada de NAT
+
+He vuelto a ejecutar:
+
+```bash
+sudo nft list ruleset
+```
+
+![Regla NAT actual del router R-G3](imagenes/nat-actual-r-g3.png)
+
+*Figura adicional. Regla `masquerade` que sigue cargada en `nftables`, aplicada a la salida por `enp1s0`.*
+
+La salida confirma que la tabla `ip nat` y su cadena `postrouting` siguen cargadas. **Esta comprobación verifica la regla**, mientras que las pruebas desde PC-LIN-G3 y `tcpdump` son las evidencias del tráfico real.
+
+
+## 10. Pruebas desde el cliente Linux
 
 Para verificar el funcionamiento del router, me conecté por SSH a **PC-LIN-G3**, que tiene la IP `192.168.3.21`:
 
@@ -280,7 +364,7 @@ Al terminar, eliminé la ruta temporal que había añadido:
 sudo ip route del default via 192.168.3.30
 ```
 
-## 10. Comprobación del tráfico con tcpdump
+## 11. Comprobación del tráfico con tcpdump
 
 Además de los pings, quise comprobar directamente en R-G3 que el tráfico del cliente pasaba por el router. Para ello utilicé `tcpdump`, filtrando los paquetes ICMP relacionados con `192.168.3.21`:
 
@@ -294,7 +378,7 @@ sudo tcpdump -ni any icmp and host 192.168.3.21
 
 En la salida se ven peticiones desde `192.168.3.21` hacia `8.8.8.8` y sus respuestas, además de tráfico ICMP relacionado con la prueba a `google.com`. Esta captura es una evidencia adicional de que **R-G3 está procesando el tráfico** del cliente hacia el exterior.
 
-## 11. Ejemplo de Netplan para un cliente
+## 12. Ejemplo de Netplan para un cliente
 
 La ruta que añadí con `ip route` durante las pruebas era temporal. Para que un cliente utilice R-G3 como puerta de enlace de manera permanente, la ruta se puede definir en su archivo de Netplan.
 
@@ -332,7 +416,7 @@ network:
 
 Esta configuración sirve como **ejemplo del cliente Linux documentado**, no como archivo que se pueda copiar sin cambios a todas las máquinas: cada equipo debe utilizar su propia IP y las interfaces que tenga disponibles. En la captura se muestra el contenido del archivo, pero no una ejecución de `netplan apply` ni una prueba posterior al reinicio.
 
-## 12. Resultados y observaciones
+## 13. Resultados y observaciones
 
 Al finalizar este sprint, las capturas aportan evidencias de los siguientes puntos:
 
@@ -345,6 +429,8 @@ Al finalizar este sprint, las capturas aportan evidencias de los siguientes punt
 - El cliente Linux puede alcanzar direcciones externas pasando por R-G3 durante las pruebas.
 - Se ha observado tráfico ICMP del cliente desde el router mediante `tcpdump`.
 
-**Aspectos que quedan fuera de las pruebas de este documento:** no se muestra una validación completa de la separación efectiva entre DMZ e intranet, ni una comprobación de todas las máquinas tras reiniciar. Los servicios DHCP y DNS del grupo se documentan en el siguiente sprint, no en este.
+**Aspectos que quedan fuera de las pruebas de este documento:** no hay separación efectiva demostrada entre DMZ e intranet, ya que comparten la red virtual ITB3 y la subred `192.168.3.0/24`. Tampoco se muestra una comprobación de todas las máquinas tras reiniciar. Los servicios DHCP y DNS del grupo se documentan en el siguiente sprint, no en este.
+
+El requisito de **documentar interfaces, IP, rutas, NAT y capturas** queda cubierto con las evidencias disponibles. La **justificación del direccionamiento** también queda explicada, pero el requisito de tener DMZ e intranet como redes independientes **no está implementado**.
 
 En conjunto, las pruebas realizadas permiten comprobar que **R-G3 funciona como puerta de enlace con salida NAT para el cliente Linux probado**, que era uno de los objetivos principales de mi parte del Sprint 1.
