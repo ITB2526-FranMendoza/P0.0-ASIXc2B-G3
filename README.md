@@ -29,7 +29,7 @@ Profesorado: Miguel Ángel González del Rio y Sergi Grangel Massana
 
 Preparar la infraestructura para una aplicación multicapa (servidor web, monitor de redes, SSH, base de datos, DHCP, DNS y FTP).
 
-Duración prevista: 6 semanas, hasta el 18/11.
+Duración prevista: 6 semanas, hasta el 18/11. (cambiado hasta el día 25/11)
 
 En los nombres de equipo, NCC indica el número de equipo (N01, N02, ...)
 
