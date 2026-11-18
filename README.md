@@ -135,9 +135,9 @@ Cada persona dedica 10 horas por sprint.
 
 | Tarea | Descripción | Inicio | Fin | Horas |
 |---|---|---|---|---|
-| Configurar B-G3 y usuario bchecker | Configurar MySQL en B-JFR con el usuario bchecker | 21/10 | 28/10 | 2 |
+| Configurar B-G3 y usuario bchecker | Configurar MySQL en B-G3 con el usuario bchecker | 21/10 | 28/10 | 2 |
 | Descargar y analizar el CSV de equipamientos de educación | Descargar el CSV de equipamientos de educación de Barcelona (Open Data BCN) y revisar sus columnas | 21/10 | 28/10 | 2 |
-| Cargar el CSV en la BBDD | Crear las tablas y cargar los datos del CSV en la base de datos de B-JFR | 28/10 | 04/11 | 3 |
+| Cargar el CSV en la BBDD | Crear las tablas y cargar los datos del CSV en la base de datos de B-G3 | 28/10 | 04/11 | 3 |
 | Configurar W-G3 y usuario bchecker | Terminar la configuración del servidor web y comprobar el acceso con bchecker | 28/10 | 04/11 | 2 |
 | Prueba de conexión web - BBDD | Verificar que W-G3 puede conectarse a B-G3 | 04/11 | 04/11 | 1 |
 
