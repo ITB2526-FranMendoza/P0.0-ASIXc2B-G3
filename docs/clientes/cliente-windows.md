@@ -80,10 +80,19 @@ Usuario `bchecker`. El servidor responde `220 (vsFTPd 3.0.5)` y `230 Login succe
 
 ### Web
 
-<img width="465" height="201" alt="image" src="https://github.com/user-attachments/assets/9aaec9a8-67b4-444f-a2ec-50b7f8840bbe" />
+Connexió amb ping
 
+<img width="465" height="201" alt="image" src="https://github.com/user-attachments/assets/f7fd8027-e270-4b45-b213-3adcbeb529ec" />
+
+Conexión a la página web
+
+<img width="911" height="605" alt="image" src="https://github.com/user-attachments/assets/08d659d7-e3e6-44c6-94af-dac68b1fde7a" />
 
 ### Base de datos
 
-<img width="597" height="194" alt="image" src="https://github.com/user-attachments/assets/e3b00ec7-1203-49fb-acbc-450430649784" />
+<img width="465" height="201" alt="image" src="https://github.com/user-attachments/assets/7db8c978-063d-4163-b4c4-4662da223faa" />
+
+Connxión a la base de datos
+
+<img width="557" height="313" alt="image" src="https://github.com/user-attachments/assets/e1853859-fb3e-4824-9a1b-cfe3f211e101" />
 
