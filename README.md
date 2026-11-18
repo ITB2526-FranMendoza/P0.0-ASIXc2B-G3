@@ -55,10 +55,10 @@ Router con hostname R-G3 y 3 redes:
 | Servicio | Hostname | Detalles |
 |---|---|---|
 | Servidor web | W-G3 | Servidor web de la aplicación |
-| SSH | - | Acceso remoto a los equipos |
+| SSH | SSH-G3 | Acceso remoto a los equipos |
 | Base de datos | B-G3 | MySQL, usuario bchecker, carga del CSV de equipamientos de educación de Barcelona |
-| DHCP | - | Reparto de direcciones en las redes del router |
-| DNS | - | Debe resolver R-G3 y R para el router |
+| DHCP | DNS-DHCP-G3 | Reparto de direcciones en las redes del router |
+| DNS | DNS-DHCP-G3 | Debe resolver R-G3 y R para el router |
 | FTP | F-G3 | Servidor FTP |
 
 CSV de datos: listado de equipamientos de educación de la ciudad de Barcelona (Open Data BCN), que se carga en la base de datos creada.
