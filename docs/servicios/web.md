@@ -18,14 +18,13 @@ Creación del usuario:
 
 <img width="239" height="75" alt="image" src="https://github.com/user-attachments/assets/8fdfbae5-4cc8-449d-a032-9a3559a149f8" />
 
-
 Con sudo sudo adduser bchecker he creado el usuario bchecker que va a ser nuestro usuario del servidor WEB luego de tener el usuario creado lo añadimos al grupo sudo:
 
-![sudo usermod -aG sudo bchecker](images/s1-02-usermod-sudo.png)
+<img width="481" height="58" alt="image" src="https://github.com/user-attachments/assets/d8b37f51-e206-4fc6-9492-b972e1d79eac" />
 
 Cambio del hostname:
 
-![hostname actual: W-G3](images/s1-03-hostname.png)
+<img width="260" height="52" alt="image" src="https://github.com/user-attachments/assets/c1498872-9acb-4d26-8c9c-c9f747e3365b" />
 
 Para cambiar el hostname utilizaremos este comando (`sudo hostnamectl set-hostname W-G3`)
 
