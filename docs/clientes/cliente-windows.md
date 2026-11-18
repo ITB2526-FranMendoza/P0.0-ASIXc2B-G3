@@ -92,7 +92,7 @@ Conexión a la página web
 
 <img width="465" height="201" alt="image" src="https://github.com/user-attachments/assets/7db8c978-063d-4163-b4c4-4662da223faa" />
 
-Connxión a la base de datos
+Conexión a la base de datos
 
 <img width="557" height="313" alt="image" src="https://github.com/user-attachments/assets/e1853859-fb3e-4824-9a1b-cfe3f211e101" />
 
