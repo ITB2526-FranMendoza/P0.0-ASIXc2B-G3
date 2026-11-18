@@ -127,7 +127,7 @@ Cada persona dedica 10 horas por sprint.
 | Tarea | Descripción | Inicio | Fin | Horas |
 |---|---|---|---|---|
 | Servidor DHCP (finalizar y probar) | Terminar la configuración del DHCP y comprobar que los clientes reciben dirección | 21/10 | 28/10 | 2 |
-| Servidor DNS | Desplegar el DNS; debe resolver R-NCC y R para el router | 21/10 | 04/11 | 5 |
+| Servidor DNS | Desplegar el DNS; debe resolver R-G3 y R para el router | 21/10 | 04/11 | 5 |
 | Usuario bchecker en router, DHCP y DNS | Crear el usuario bchecker en los equipos y aplicaciones de la persona 1 | 28/10 | 04/11 | 1 |
 | Revisión parcial de conectividad | Comprobar la conectividad entre DMZ, Intranet y NAT | 28/10 | 04/11 | 2 |
 
@@ -153,7 +153,7 @@ Cada persona dedica 10 horas por sprint.
 
 | Tarea | Descripción | Inicio | Fin | Horas |
 |---|---|---|---|---|
-| Servidor FTP F-NCC | Desplegar el servidor FTP F-NCC y crear el usuario bchecker | 21/10 | 28/10 | 3 |
+| Servidor FTP F-G3 | Desplegar el servidor FTP F-G3 y crear el usuario bchecker | 21/10 | 28/10 | 3 |
 | Usuario bchecker en SSH | Verificar el acceso con bchecker en el servidor SSH | 28/10 | 04/11 | 1 |
 | Pasar capturas y pasos a Fran | Pasar a Fran las capturas y los pasos de SSH y FTP para la documentación | 28/10 | 04/11 | 1 |
 
