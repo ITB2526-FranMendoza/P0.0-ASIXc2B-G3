@@ -80,7 +80,8 @@ Usuario `bchecker`. El servidor responde `220 (vsFTPd 3.0.5)` y `230 Login succe
 
 ### Web
 
-<img width="598" height="260" alt="image" src="https://github.com/user-attachments/assets/c6ef23ac-dc5c-4879-8d90-7cf303b445ac" />
+<img width="465" height="201" alt="image" src="https://github.com/user-attachments/assets/9aaec9a8-67b4-444f-a2ec-50b7f8840bbe" />
+
 
 ### Base de datos
 
