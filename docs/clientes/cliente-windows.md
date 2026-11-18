@@ -84,6 +84,5 @@ Usuario `bchecker`. El servidor responde `220 (vsFTPd 3.0.5)` y `230 Login succe
 
 ### Base de datos
 
-```cmd
-ping 192.168.3.11
-```
+<img width="597" height="194" alt="image" src="https://github.com/user-attachments/assets/e3b00ec7-1203-49fb-acbc-450430649784" />
+
