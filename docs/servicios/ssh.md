@@ -66,10 +66,6 @@ Para garantizar que el puerto 22/TCP (SSH) permanezca oculto y cerrado por defec
 
 Para asegurar que Fail2Ban está monitorizando el servicio SSH y bloqueando ataques reales, realizamos una prueba forzando intentos fallidos de inicio de sesión.
 
-*   Intentamos acceder localmente desactivando la autenticación por clave pública, lo que nos obligará a introducir la contraseña. Introducimos contraseñas erróneas deliberadamente de 3 a 5 veces hasta que la conexión sea denegada:
-    ```bash
-    ssh -o PubkeyAuthentication=no isard@127.0.0.1
-    ```
 
 *   Tras los intentos fallidos, comprobamos el estado de la jaula `sshd` en Fail2Ban para verificar si ha detectado la intrusión:
     ```bash
