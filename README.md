@@ -112,6 +112,7 @@ Cada persona dedica 10 horas por sprint.
 | Repositorio GitHub del proyecto | Crear el repositorio de GitHub del proyecto | 09/10 | 14/10 | 2 |
 | Validación por clave pública/privada | Configurar que el servidor se valide en GitHub mediante intercambio de clave pública/privada | 14/10 | 21/10 | 2 |
 | Estructura inicial de documentación Markdown | Crear el árbol de documentación Markdown en el repositorio | 14/10 | 21/10 | 2 |
+| Riesgos Laborables | Crear una prevención de Riesgos Laborables | 14/10 | 21/10 | 2 |
 
 #### Persona 4 - Joel Muñoz Llerin
 
