@@ -16,8 +16,8 @@
 
 Creación del usuario:
 
-![whoami en W-G3 como bchecker](<img width="239" height="75" alt="image" src="https://github.com/user-attachments/assets/2aee937e-6fe1-47e4-ac99-348beb89dcc3" />
-)
+<img width="239" height="75" alt="image" src="https://github.com/user-attachments/assets/8fdfbae5-4cc8-449d-a032-9a3559a149f8" />
+
 
 Con sudo sudo adduser bchecker he creado el usuario bchecker que va a ser nuestro usuario del servidor WEB luego de tener el usuario creado lo añadimos al grupo sudo:
 
