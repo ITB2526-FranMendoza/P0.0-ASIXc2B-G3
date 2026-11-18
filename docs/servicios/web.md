@@ -30,13 +30,13 @@ Para cambiar el hostname utilizaremos este comando (`sudo hostnamectl set-hostna
 
 Entrar en (sudo nano /etc/hosts) para Asociar el nuevo nombre de la máquina (W-G3) a su IP local para que el sistema y comandos como sudo la reconozcan sin errores.
 
-![Fichero /etc/hosts con la línea 127.0.1.1 W-G3](images/s1-04-etc-hosts.png)
+<img width="616" height="233" alt="image" src="https://github.com/user-attachments/assets/c9d3e042-e6c3-4c5f-8403-d7effdcc8b75" />
 
 Desplegacion del servidor web
 
 Instalar el servidor web Apache:
 
-![sudo apt install apache2 -y](images/s1-05-apache-install.png)
+<img width="633" height="205" alt="image" src="https://github.com/user-attachments/assets/d78f05a0-3e9d-449a-9d1f-59e92e5723ca" />
 
 Verificación de que el servidor está arrancado:
 
