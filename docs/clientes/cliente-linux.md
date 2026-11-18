@@ -170,3 +170,7 @@ git pull
 
 Responde `Ja està al dia.` (ya está actualizado).
 
+### Comprobación final
+
+<img width="612" height="448" alt="image" src="https://github.com/user-attachments/assets/13943141-4987-496f-a764-3bd0d563fbc1" />
+
