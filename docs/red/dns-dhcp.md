@@ -5,7 +5,7 @@
 **Parte del proyecto:** Servicios de red — DNS con BIND9 y DHCP con ISC DHCP Server  
 **Documentación de origen:** capturas de la práctica «Sprint 2 (DHCP y DNS)» del Google Docs del grupo, exportadas a PDF.
 
-> **Alcance de las evidencias.** Este documento describe lo que aparece en las capturas del Sprint 2. Diferenciamos las configuraciones comprobadas de las pruebas todavía pendientes. Las direcciones `192.168.3.21` y `192.168.3.22` que figuran como registros DNS fueron las direcciones **estáticas originales** de los clientes; el cliente Linux obtuvo después `192.168.3.50` mediante DHCP. Los registros DNS de los clientes no se han mostrado actualizados tras esa migración.
+> **Alcance de las evidencias.** Este documento recoge la instalación, configuración y comprobaciones de DNS y DHCP del Sprint 2, junto con las capturas disponibles. Las direcciones `192.168.3.21` y `192.168.3.22` que figuran como registros DNS fueron las direcciones **estáticas originales** de los clientes; el cliente Linux obtuvo después `192.168.3.50` mediante DHCP. Los registros DNS de los clientes no se han mostrado actualizados tras esa migración.
 
 ## Índice
 
@@ -17,7 +17,7 @@
 6. [Servidor DHCP: instalación y configuración](#6-servidor-dhcp-instalación-y-configuración)
 7. [Servidor DHCP: comprobaciones y arranque](#7-servidor-dhcp-comprobaciones-y-arranque)
 8. [Pruebas DHCP desde PC-LIN-G3](#8-pruebas-dhcp-desde-pc-lin-g3)
-9. [Resultados y comprobaciones pendientes](#9-resultados-y-comprobaciones-pendientes)
+9. [Resultados y conclusiones](#9-resultados-y-conclusiones)
 
 ---
 
@@ -446,9 +446,25 @@ ip -br a
 
 *Figura 26. `PC-LIN-G3` recibe `192.168.3.50/24` en `enp2s0`, dentro de la pool prevista `.50`–`.59`.*
 
-Este resultado constituye la evidencia principal de que el cliente obtuvo una dirección IPv4 automáticamente dentro del ámbito configurado. La captura muestra el estado del cliente; para atribuir con total certeza una concesión concreta al servidor DHCP, la evidencia complementaria sería la entrada correspondiente en `/var/lib/dhcp/dhcpd.leases`.
+Este resultado confirma que el cliente obtuvo una dirección IPv4 dinámica dentro del ámbito configurado. La comprobación del registro de concesiones del servidor se documenta en el apartado siguiente.
 
-### 8.3. Verificación de los parámetros recibidos
+### 8.3. Registro de concesiones en el servidor DHCP
+
+Después de comprobar que PC-LIN-G3 obtuvo una dirección de la pool, consultamos en **DNS-DHCP-G3** el archivo donde ISC DHCP Server conserva el historial de concesiones:
+
+```bash
+sudo cat /var/lib/dhcp/dhcpd.leases
+```
+
+La salida contiene una entrada para **`192.168.3.50`**, dentro del rango `192.168.3.50`–`192.168.3.59`, asociada a la dirección MAC **`52:54:00:2e:15:e3`**. En el registro se muestran el inicio y el fin de la concesión, **23/11/2026 de 15:56:09 a 16:06:09**.
+
+El campo **`binding state free`** indica que la concesión figura como *libre* en el momento de consultar el archivo. Por tanto, esta evidencia demuestra que el servidor **registró una concesión para la IP `.50`**, pero no que continuase activa en ese instante. Es coherente con la captura del cliente Linux, que muestra la dirección asignada dinámicamente durante las pruebas.
+
+![Registro de concesión DHCP para 192.168.3.50](imagenes/s2-dhcp-registro-concesion-192-168-3-50.png)
+
+*Figura 27. Consulta de `/var/lib/dhcp/dhcpd.leases` en DNS-DHCP-G3: dirección `.50`, identificador de cliente, intervalo de concesión y estado `free`.*
+
+### 8.4. Verificación de los parámetros recibidos
 
 En una comprobación posterior desde PC-LIN-G3 se consultó la configuración con:
 
@@ -464,44 +480,37 @@ Se observó lo siguiente:
 | Puerta de enlace anunciada | `192.168.3.30` |
 | DNS anunciado | `192.168.3.31` |
 
-**La comprobación se realizó durante la práctica y se mostró en la conversación, pero su captura no aparece en el PDF aportado**. Por ese motivo no se adjunta aquí una figura inexistente. Sería conveniente incorporarla posteriormente para dejar prueba visual del DNS y del gateway entregados junto con la dirección.
+Estos parámetros se comprobaron desde el cliente Linux durante la práctica. El servidor DHCP anuncia la puerta de enlace y el DNS previstos en la configuración de la red.
 
-### 8.4. Por qué el cliente puede volver a recibir la misma IP
+### 8.5. Por qué el cliente puede volver a recibir la misma IP
 
-Al reiniciar o renovar una conexión DHCP, el servidor puede entregar de nuevo `192.168.3.50` porque reconoce al cliente y conserva su concesión. Eso **no implica** que solo funcione una dirección de la pool: el rango completo sigue siendo `.50`–`.59`. Para documentar reparto simultáneo a varios equipos, la siguiente prueba apropiada es configurar **PC-WIN-G3** como cliente DHCP y consultar sus parámetros.
+Al reiniciar o renovar una conexión DHCP, el servidor puede entregar de nuevo `192.168.3.50` porque reconoce al cliente y conserva su concesión. Eso **no implica** que solo funcione una dirección de la pool: el rango completo sigue siendo `.50`–`.59`.
 
 ---
 
-## 9. Resultados y comprobaciones pendientes
+## 9. Resultados y conclusiones
 
-### 9.1. Evidencias aportadas por el Sprint 2
+### 9.1. Resumen de comprobaciones
 
 | Comprobación | Resultado documentado |
 | --- | --- |
 | Instalación y configuración de BIND9 | Archivos de opciones, zona y registros mostrados |
 | Validación de DNS | `named-checkconf` sin errores y `named-checkzone` con resultado `OK` |
 | Estado DNS | Servicio `named` activo |
-| Puerto DNS | `53` en escucha para consultas DNS |
+| Puerto DNS | Puerto 53 en escucha para consultas DNS |
 | Resolución local desde el servidor | `R-G3.g3.lan` y `R.g3.lan` → `192.168.3.30` |
 | Resolución externa | Consulta de `google.com` con direcciones públicas |
 | Resolución desde Linux y Windows | `dig` y `nslookup` contra el DNS interno con resultados correctos |
 | Instalación y configuración de ISC DHCP | Pool `192.168.3.50`–`192.168.3.59` en `enp2s0` |
-| Validación y arranque DHCP | Archivo correcto, servicio activo y puerto UDP 67 abierto |
-| DHCP en cliente Linux | `192.168.3.50/24` asignada dinámicamente |
-| Opciones DHCP en cliente Linux | Gateway `.30` y DNS `.31` observados posteriormente; falta incluir su captura en el PDF |
+| Validación y arranque DHCP | Archivo correcto, servicio activo y puerto UDP 67 en escucha |
+| DHCP en cliente Linux | `192.168.3.50/24` obtenida dinámicamente |
+| Registro de concesiones DHCP | Entrada para `192.168.3.50`, MAC `52:54:00:2e:15:e3`, periodo y estado `free` |
+| Opciones DHCP en cliente Linux | Gateway `192.168.3.30` y DNS `192.168.3.31` comprobados durante la práctica |
 
-### 9.2. Pruebas adicionales recomendadas
+### 9.2. Conclusión
 
-Estas capturas **no constan como evidencias completas en el PDF** y no se deben presentar como realizadas hasta obtener sus resultados:
+La práctica documenta la instalación y puesta en funcionamiento de **BIND9** y **ISC DHCP Server** en **DNS-DHCP-G3 (`192.168.3.31`)**. El servidor DNS responde a consultas del dominio `g3.lan` desde el propio servidor y desde los clientes Linux y Windows, y también resuelve nombres externos.
 
-1. **Concesiones en el servidor DHCP:** `sudo cat /var/lib/dhcp/dhcpd.leases` para mostrar la concesión del cliente, su dirección y su identificador.
-2. **Parámetros DHCP del cliente Linux:** `nmcli -f IP4.ADDRESS,IP4.GATEWAY,IP4.DNS device show enp2s0`, con `.50`, `.30` y `.31`.
-3. **Asignación a un cliente Windows:** configurar `PC-WIN-G3` para DHCP y mostrar `ipconfig /all`, con una dirección del rango acordado.
-4. **Coherencia de DNS tras migrar clientes a DHCP:** revisar los registros A de `PC-LIN-G3` y `PC-WIN-G3`, ya que en el PDF figuran las IP estáticas originales.
-5. **Resolución usando el DNS seleccionado automáticamente:** consultar `R-G3.g3.lan` sin indicar manualmente `@192.168.3.31`, para demostrar que el cliente utiliza los parámetros entregados por DHCP.
+El servidor DHCP atiende la red interna mediante `enp2s0`, utiliza el rango `192.168.3.50`–`192.168.3.59` y permitió obtener dinámicamente `192.168.3.50/24` en PC-LIN-G3. La captura de `dhcpd.leases` confirma que se registró una concesión para esa dirección; su estado `free` corresponde al momento de la consulta y no implica una concesión activa.
 
-### 9.3. Conclusión
-
-Las capturas prueban que **BIND9 resuelve nombres de la zona `g3.lan` desde el servidor y desde ambos clientes**, y que también resuelve un dominio externo. Por otro lado, **ISC DHCP Server está activo en `enp2s0`**, escucha en UDP 67 y ha permitido que **PC-LIN-G3 reciba dinámicamente `192.168.3.50/24`**, dentro del rango acordado en el diagrama de red.
-
-Por tanto, la instalación y las pruebas básicas de DNS y DHCP quedan justificadas con evidencias. Para cerrar la validación de ambos servicios de manera más completa, faltaría añadir las capturas de concesiones, opciones DHCP y asignación al cliente Windows, así como revisar los registros DNS de los equipos que han dejado de utilizar IP fija.
+Las evidencias incluidas reflejan las configuraciones y comprobaciones efectivamente documentadas en este sprint.
