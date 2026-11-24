@@ -50,7 +50,7 @@ Creamos una página web de prueba para probar el servicio:
 
 Verificación de la página web desde el navegador:
 
-![Página de prueba en localhost](images/s1-09-navegador-localhost.png)
+<img width="420" height="438" alt="image" src="https://github.com/user-attachments/assets/4a96f62d-2f29-4948-85fa-d014c2c2eaf7" />
 
 ---
 
@@ -62,11 +62,11 @@ Comprobar conectividad de red y resolución de B-G3
 
 B-G3:
 
-![ping desde B-G3 a 192.168.3.12](images/s2-09-ping-b-g3.png)
+<img width="631" height="203" alt="image" src="https://github.com/user-attachments/assets/e1a32d89-40e0-4159-8ef8-37d534929120" />
 
 W-G3:
 
-![ping desde W-G3 a 192.168.3.11](images/s2-10-ping-w-g3.png)
+<img width="628" height="201" alt="image" src="https://github.com/user-attachments/assets/bff98abe-7912-4663-b1c2-b412fec75961" />
 
 Probar conexión directa al puerto MySQL de B-G3
 
