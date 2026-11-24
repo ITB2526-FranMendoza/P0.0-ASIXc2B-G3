@@ -117,11 +117,11 @@ Ver filas con datos reales (Para ver como lucen las entradas)
 
 **Creación del usuario bchecker con la contraseña bchecker121 y privilegios (tanto en local como desde cualquier IP remota):**
 
-
+<img width="583" height="230" alt="image" src="https://github.com/user-attachments/assets/80d2388f-828f-47cd-a19a-bff24d612e82" />
 
 **Comprobamos del que el usuario se creado correctamente:**
 
-![Acceso a MySQL con el usuario bchecker](images/s2-06-login-bchecker.png)
+<img width="583" height="214" alt="image" src="https://github.com/user-attachments/assets/fa8d82df-199c-4caf-bc2c-d7eee7a48503" />
 
 ### Cargar el CSV en la BBDD
 
@@ -129,7 +129,7 @@ Ver filas con datos reales (Para ver como lucen las entradas)
 
 Open Data BCN viene codificado en UTF-16 (por eso aparecían los símbolos `` en las tildes). Para convertirlo a UTF-8 hacemos estos comandos:
 
-![iconv y cp a /var/lib/mysql-files/](images/s2-07-iconv-utf8.png)
+<img width="584" height="46" alt="image" src="https://github.com/user-attachments/assets/ce5c3f1d-9f25-4207-b3d4-37caf054a17d" />
 
 **Crear la base de datos y la tabla principal**
 
@@ -220,7 +220,7 @@ addresses_town,
 
 **Comprobación de cuantos datos hay en la tabla:**
 
-![SELECT COUNT(*) FROM equipamientos](images/s2-08-count-equipamientos.png)
+<img width="583" height="144" alt="image" src="https://github.com/user-attachments/assets/4ed8afe4-d8c6-4d26-8bcf-d79868e20dac" />
 
 **Crear tablas normalizadas adicionales**
 
@@ -255,17 +255,17 @@ Comprobar conectividad de red y resolución de B-G3
 
 B-G3:
 
-![ping desde B-G3 a 192.168.3.12](images/s2-09-ping-b-g3.png)
+<img width="628" height="200" alt="image" src="https://github.com/user-attachments/assets/2e1f8096-66f7-4c85-a713-03f322e5aecf" />
 
 W-G3:
 
-![ping desde W-G3 a 192.168.3.11](images/s2-10-ping-w-g3.png)
+<img width="628" height="203" alt="image" src="https://github.com/user-attachments/assets/9b1729c5-6ec9-41d2-9feb-88c536c587b6" />
 
 Probar conexión directa al puerto MySQL de B-G3
 
 Desde la terminal de W-JFR, Nos conectamos de forma remota al servidor MySQL de B-G3 con el usuario bchecker (contraseña: bchecker121)
 
-![mysql -h B-G3 -u bchecker -p desde W-G3](images/s2-11-mysql-remoto.png)
+<img width="630" height="135" alt="image" src="https://github.com/user-attachments/assets/f012da48-915a-4e38-b437-465297fcbab6" />
 
 Probar la conexión desde la aplicación web (Apache + PHP →MySQL)
 
@@ -299,5 +299,5 @@ EOF'
 
 Verificacion:
 
-![test_db.php en el navegador](images/s2-12-test-db-php.png)
+<img width="633" height="375" alt="image" src="https://github.com/user-attachments/assets/26518536-2cf2-4853-ab14-6062fee413ac" />
 
