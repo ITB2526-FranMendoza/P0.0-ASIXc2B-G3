@@ -16,21 +16,21 @@
 
 Creación del usuario (ARCA):
 
-![whoami en B-G3 como arca](images/s1-10-whoami-arca.png)
+<img width="480" height="111" alt="image" src="https://github.com/user-attachments/assets/878aaf3c-a181-4481-b55c-88a68bec561a" />
 
 Pasos para la instalación correcta del (MySQL):
 
 Instalación el paquete de MySQL Server:
 
-![sudo apt install mysql-server -y](images/s1-11-mysql-install.png)
+<img width="631" height="381" alt="image" src="https://github.com/user-attachments/assets/a88d308d-e40c-45e5-bcfa-203d323ce628" />
 
 Verificar que el servicio esté activo:
 
-![sudo systemctl status mysql](images/s1-12-mysql-status.png)
+<img width="631" height="279" alt="image" src="https://github.com/user-attachments/assets/5563b65e-67e9-41cb-a6f2-d986e5a5c4d9" />
 
 Ejecutar el asistente de seguridad inicial:
 
-![sudo mysql_secure_installation](images/s1-13-mysql-secure-installation.png)
+<img width="631" height="277" alt="image" src="https://github.com/user-attachments/assets/cc0a5e4c-1ac4-455d-8e77-f9b0187b454b" />
 
 **Estos son los pasos que he seguido para la configuracion del MySQL**
 
