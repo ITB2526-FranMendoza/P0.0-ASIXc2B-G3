@@ -117,7 +117,7 @@ Ver filas con datos reales (Para ver como lucen las entradas)
 
 **Creación del usuario bchecker con la contraseña bchecker121 y privilegios (tanto en local como desde cualquier IP remota):**
 
-![CREATE USER y GRANT para bchecker](images/s2-05-create-user-bchecker.png)
+
 
 **Comprobamos del que el usuario se creado correctamente:**
 
