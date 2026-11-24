@@ -69,7 +69,8 @@ Explicacion:
 
 Acceder a la consola de administración de MySQL:
 
-![sudo mysql](images/s1-14-sudo-mysql.png)
+<img width="632" height="249" alt="image" src="https://github.com/user-attachments/assets/60ab0625-fd3f-44ea-ac4f-772de91e646c" />
+
 
 ---
 
@@ -87,13 +88,13 @@ Este se puede descargar desde la web oficial de Open Data BCN buscando el conjun
 
 O bien también se puede descargar desde la línea de comando como lo he hecho yo: [https://opendata-ajuntament.barcelona.cat/data/es/dataset/equipament-educacio](https://opendata-ajuntament.barcelona.cat/data/es/dataset/equipament-educacio)
 
-![wget del CSV de equipamientos de educación](images/s2-01-wget-csv.png)
+<img width="634" height="324" alt="image" src="https://github.com/user-attachments/assets/55211852-4190-49a0-9871-7c1e32b96c61" />
 
 **Inspeccionar la estructura del archivo y sus columnas**
 
 Ver los nombres de todas las columnas:
 
-![head -n 1 equipamientos_educacion.csv](images/s2-02-head-columnas.png)
+<img width="628" height="191" alt="image" src="https://github.com/user-attachments/assets/ec58ee5e-e07a-4d77-a906-8d2838c128ef" />
 
 **Listado de columnas obtenidas del archivo:**
 
@@ -106,11 +107,11 @@ geo_epgs_4326_lat / geo_epgs_4326_lon: Coordenadas geográficas de latitud y lon
 
 Ver filas con datos reales (Para ver como lucen las entradas)
 
-![head -n 3 equipamientos_educacion.csv](images/s2-03-head-filas.png)
+<img width="631" height="345" alt="image" src="https://github.com/user-attachments/assets/b111112e-d0f5-4ed8-bd94-85412c4543a1" />
 
 **Contar cuántos registros/filas tiene el archivo:**
 
-![wc -l equipamientos_educacion.csv](images/s2-04-wc-lineas.png)
+<img width="448" height="64" alt="image" src="https://github.com/user-attachments/assets/f943a755-c534-4b86-af62-b98bb8a4f642" />
 
 ### Configurar B-G3 y usuario bchecker
 
