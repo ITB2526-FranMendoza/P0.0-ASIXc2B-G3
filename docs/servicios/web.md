@@ -72,7 +72,7 @@ Probar conexión directa al puerto MySQL de B-G3
 
 Desde la terminal de W-JFR, Nos conectamos de forma remota al servidor MySQL de B-G3 con el usuario bchecker (contraseña: bchecker121)
 
-![mysql -h B-G3 -u bchecker -p desde W-G3](images/s2-11-mysql-remoto.png)
+<img width="634" height="137" alt="image" src="https://github.com/user-attachments/assets/ed2d3ff6-4dd0-43f8-ad38-15c3cca5a259" />
 
 Probar la conexión desde la aplicación web (Apache + PHP →MySQL)
 
