@@ -106,4 +106,5 @@ EOF'
 
 Verificacion:
 
-![test_db.php en el navegador](images/s2-12-test-db-php.png)
+<img width="632" height="375" alt="image" src="https://github.com/user-attachments/assets/4944dd8f-4a2e-449c-9ead-fe964cc953c7" />
+
