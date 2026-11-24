@@ -40,13 +40,13 @@ Instalar el servidor web Apache:
 
 Verificación de que el servidor está arrancado:
 
-![sudo systemctl status apache2](images/s1-06-apache-status.png)
+<img width="631" height="237" alt="image" src="https://github.com/user-attachments/assets/8daefa6b-3c12-4ac9-a733-04bfa14a9f78" />
 
 Creamos una página web de prueba para probar el servicio:
 
-![/var/www/html/index.html (parte 1)](images/s1-07-index-html-parte1.png)
+<img width="636" height="603" alt="image" src="https://github.com/user-attachments/assets/8ddbcd24-4041-426a-a6c3-4b33bd29a85d" />
 
-![/var/www/html/index.html (parte 2)](images/s1-08-index-html-parte2.png)
+<img width="630" height="410" alt="image" src="https://github.com/user-attachments/assets/e081c468-da4a-44d4-8fcb-084836ccb0b9" />
 
 Verificación de la página web desde el navegador:
 
