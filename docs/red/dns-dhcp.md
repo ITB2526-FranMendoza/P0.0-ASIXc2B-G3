@@ -460,7 +460,7 @@ La salida contiene una entrada para **`192.168.3.50`**, dentro del rango `192.16
 
 El campo **`binding state free`** indica que la concesión figura como *libre* en el momento de consultar el archivo. Por tanto, esta evidencia demuestra que el servidor **registró una concesión para la IP `.50`**, pero no que continuase activa en ese instante. Es coherente con la captura del cliente Linux, que muestra la dirección asignada dinámicamente durante las pruebas.
 
-![Captura del registro de concesiones DHCP](imagenes/s2-dhcp-registro-concesion-192-168-3-50.png)
+![Captura del registro de concesiones DHCP](imagenes/s2-dhcp-concesion-192-168-3-50.png)
 
 *Figura 27. Consulta de `/var/lib/dhcp/dhcpd.leases` en DNS-DHCP-G3: dirección `.50`, identificador de cliente, intervalo de concesión y estado `free`.*
 
