@@ -10,16 +10,16 @@
 1. [Objetivo del sprint](#1-objetivo-del-sprint)
 2. [Diagrama y organización de la red](#2-diagrama-y-organización-de-la-red)
 3. [Plan de direccionamiento y redes utilizadas](#3-plan-de-direccionamiento-y-redes-utilizadas)
-13. [Configuración de red del router R-G3](#3-configuración-de-red-del-router-r-g3)
-13. [Creación del usuario bchecker](#4-creación-del-usuario-bchecker)
-13. [Instalación y activación de SSH](#5-instalación-y-activación-de-ssh)
-13. [Activación del reenvío de paquetes](#6-activación-del-reenvío-de-paquetes)
-13. [Comprobación de las rutas del router](#7-comprobación-de-las-rutas-del-router)
-13. [Configuración de NAT con nftables](#8-configuración-de-nat-con-nftables)
-13. [Pruebas desde el cliente Linux](#9-pruebas-desde-el-cliente-linux)
-13. [Comprobación del tráfico con tcpdump](#10-comprobación-del-tráfico-con-tcpdump)
-13. [Ejemplo de Netplan para un cliente](#11-ejemplo-de-netplan-para-un-cliente)
-13. [Resultados y observaciones](#12-resultados-y-observaciones)
+4. [Configuración de red del router R-G3](#4-configuración-de-red-del-router-r-g3)
+5. [Creación del usuario bchecker](#5-creación-del-usuario-bchecker)
+6. [Instalación y activación de SSH](#6-instalación-y-activación-de-ssh)
+7. [Activación del reenvío de paquetes](#7-activación-del-reenvío-de-paquetes)
+8. [Comprobación de las rutas del router](#8-comprobación-de-las-rutas-del-router)
+9. [Configuración de NAT con nftables](#9-configuración-de-nat-con-nftables)
+10. [Pruebas desde el cliente Linux](#10-pruebas-desde-el-cliente-linux)
+11. [Comprobación del tráfico con tcpdump](#11-comprobación-del-tráfico-con-tcpdump)
+12. [Ejemplo de Netplan para un cliente](#12-ejemplo-de-netplan-para-un-cliente)
+13. [Resultados y observaciones](#13-resultados-y-observaciones)
 
 ---
 
@@ -109,7 +109,7 @@ Por tanto, el direccionamiento que sí podemos justificar es el de **ITB3 y las 
 
 ## 4. Configuración de red del router R-G3
 
-### 3.1. Evitar que cloud-init sobrescriba la configuración
+### 4.1. Evitar que cloud-init sobrescriba la configuración
 
 En la máquina virtual comprobé que la interfaz **enp2s0** correspondía a la red compartida que utilizamos para comunicarnos con los demás equipos del grupo. Como la configuración de red estaba gestionada por `cloud-init`, lo desactivé para evitar que regenerase los archivos de Netplan al reiniciar.
 
@@ -121,7 +121,7 @@ echo 'network: {config: disabled}' | sudo tee /etc/cloud/cloud.cfg.d/99-disable-
 
 *Figura 2. Creación del archivo que desactiva la gestión automática de red de cloud-init.*
 
-### 3.2. Asignar la IP al router
+### 4.2. Asignar la IP al router
 
 Después revisé el archivo `/etc/netplan/50-cloud-init.yaml`. En la captura se ve que **enp1s0** obtiene su configuración por DHCP, mientras que **enp2s0** utiliza una dirección estática:
 
@@ -143,7 +143,7 @@ network:
 
 De esta manera, la dirección `192.168.3.30` queda reservada para el router dentro de la red del grupo.
 
-### 3.3. Primera prueba de conectividad
+### 4.3. Primera prueba de conectividad
 
 Para comprobar la comunicación, hice un ping desde R-G3 al cliente Windows, cuya IP es `192.168.3.22`:
 
@@ -257,7 +257,7 @@ Esta captura demuestra **qué rutas conoce R-G3**; no demuestra por sí sola que
 
 ## 9. Configuración de NAT con nftables
 
-### 8.1. Crear la regla de NAT
+### 9.1. Crear la regla de NAT
 
 Para permitir que los clientes salgan a Internet utilizando el router, configuré **NAT** con `nftables`. La regla utiliza `masquerade`, que sustituye la dirección de origen del tráfico saliente por la dirección de la interfaz de salida.
 
@@ -287,7 +287,7 @@ table ip nat {
 
 La regla se aplica a los paquetes que salen por `enp1s0`, que es la interfaz de salida indicada en la tabla de rutas. En esta práctica se utiliza para que las máquinas de la red interna puedan comunicarse con destinos externos a través de R-G3.
 
-### 8.2. Instalar y activar nftables
+### 9.2. Instalar y activar nftables
 
 Instalé el paquete correspondiente:
 
@@ -330,7 +330,7 @@ La salida confirma que la tabla `ip nat` y su cadena `postrouting` siguen cargad
 
 ## 10. Pruebas desde el cliente Linux
 
-Para verificar el funcionamiento del router, me conecté por SSH a **PC-LIN-G3**, que tiene la IP `192.168.3.21`:
+Para verificar el funcionamiento del router durante el Sprint 1, me conecté por SSH a **PC-LIN-G3**, que entonces utilizaba la IP estática `192.168.3.21`:
 
 ```bash
 ssh isard@192.168.3.21
@@ -382,7 +382,7 @@ En la salida se ven peticiones desde `192.168.3.21` hacia `8.8.8.8` y sus respue
 
 La ruta que añadí con `ip route` durante las pruebas era temporal. Para que un cliente utilice R-G3 como puerta de enlace de manera permanente, la ruta se puede definir en su archivo de Netplan.
 
-En el caso de **PC-LIN-G3**, la captura muestra la IP `192.168.3.21/24`, una ruta por defecto a `192.168.3.30` y los servidores DNS públicos `8.8.8.8` y `1.1.1.1`:
+En esta configuración inicial del Sprint 1, **PC-LIN-G3** utilizaba la IP estática `192.168.3.21/24`, una ruta por defecto a `192.168.3.30` y los servidores DNS públicos `8.8.8.8` y `1.1.1.1`:
 
 ```yaml
 network:
@@ -414,7 +414,7 @@ network:
 
 *Figura 16. Configuración de red mostrada en PC-LIN-G3.*
 
-Esta configuración sirve como **ejemplo del cliente Linux documentado**, no como archivo que se pueda copiar sin cambios a todas las máquinas: cada equipo debe utilizar su propia IP y las interfaces que tenga disponibles. En la captura se muestra el contenido del archivo, pero no una ejecución de `netplan apply` ni una prueba posterior al reinicio.
+Esta configuración sirve como **ejemplo histórico del Sprint 1**, no como archivo que se pueda copiar sin cambios a todas las máquinas: cada equipo debe utilizar su propia IP y las interfaces que tenga disponibles. En el **Sprint 2**, PC-LIN-G3 pasó a obtener `192.168.3.50/24` mediante DHCP. En la captura se muestra el contenido del archivo, pero no una ejecución de `netplan apply` ni una prueba posterior al reinicio.
 
 ## 13. Resultados y observaciones
 
